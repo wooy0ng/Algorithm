@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-
 typedef struct _node* nodePointer;
 typedef struct _lqueue* queuePointer;
 
@@ -19,12 +18,11 @@ typedef struct _lqueue {
 
 
 bool isEmpty(queuePointer q) {
-	if (q->front == q->rear)
+	if (q->front == NULL)
 		return true;
 	else
 		return false;
 }
-
 
 void Enqueue(queuePointer q, int data) {
 	nodePointer Node = (nodePointer)malloc(sizeof(node));
@@ -43,15 +41,16 @@ void Enqueue(queuePointer q, int data) {
 
 int Dequeue(queuePointer q) {
 	int pop_data = 0;
-	if (!isEmpty(q)) {
-		nodePointer temp = q->front;
-		pop_data = q->front->data;
-		q->front = temp->prev;
-		free(temp);
-	}
-	else {
-		printf("Not In data\n");
-		exit(-1);
-	}
+	
+	nodePointer temp = q->front;
+	pop_data = q->front->data;
+	q->front = temp->prev;
+	free(temp);
 	return pop_data;
+	
+}
+
+void queueInit(queuePointer q) {
+	q->rear = NULL;
+	q->front = NULL;
 }
