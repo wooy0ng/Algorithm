@@ -1,5 +1,5 @@
-# Algorithm
-Practice Algorithm
+# Data structure
+Practice practice
 
 
 For more details, 
